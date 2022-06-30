@@ -13,4 +13,12 @@
     name: "kim",
     age: 35,
   };
+
+  /**
+   * String Literal Types
+   */
+
+  type Name = "name";
+  let sjName: Name;
+  sjName = "name";
 }
