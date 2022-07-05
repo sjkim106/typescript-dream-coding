@@ -5,7 +5,7 @@
   };
 
   class CoffeMaker {
-    BEANS_GRAMM_PER_SHOT: number = 7;
+    static BEANS_GRAMM_PER_SHOT: number = 7;
     coffeeBeans: number = 0;
 
     constructor(coffeeBeans: number) {
@@ -13,11 +13,11 @@
     }
 
     makeCoffee(shots: number): CoffeeCup {
-      if (this.coffeeBeans > shots * this.BEANS_GRAMM_PER_SHOT) {
+      if (this.coffeeBeans > shots * CoffeMaker.BEANS_GRAMM_PER_SHOT) {
         throw new Error("Not enouph coffee beans!");
       }
 
-      this.coffeeBeans -= shots * this.BEANS_GRAMM_PER_SHOT;
+      this.coffeeBeans -= shots * CoffeMaker.BEANS_GRAMM_PER_SHOT;
 
       return {
         shots: shots,
