@@ -7,19 +7,11 @@
   interface CoffeMaker {
     makeCoffee(shots: number): CoffeeCup;
   }
-  class CafeLatteMachine extends CoffeMachine {
-    makeCoffee(shots: number): CoffeeCup {
-      return {
-        ...s,
-      };
-    }
-  }
-
   class CoffeMachine implements CoffeMaker {
     private static BEANS_GRAMM_PER_SHOT: number = 7;
     private coffeeBeans: number = 0;
 
-    constructor(coffeeBeans: number) {
+    public constructor(coffeeBeans: number) {
       this.coffeeBeans = coffeeBeans;
     }
 
@@ -65,10 +57,28 @@
     }
   }
 
+  class CaffeLatteMachine extends CoffeMachine {
+    private steamMilk(): void {
+      console.log("Steaming some milk...");
+    }
+
+    makeCoffee(shots: number): CoffeeCup {
+      const coffee = super.makeCoffee(shots);
+      this.steamMilk();
+      return {
+        ...coffee,
+        hasMilk: true,
+      };
+    }
+  }
+
   const maker = CoffeMachine.makeMachine(50);
   maker.fillCoffeeBeans(50);
   maker.fillCoffeeBeans(30);
 
+  const latteMachine = new CaffeLatteMachine(23);
+  latteMachine.fillCoffeeBeans(50);
+  latteMachine.makeCoffee(10);
   class User {
     get fullName(): string {
       return `${this.firstName} ${this.lastName}`;
