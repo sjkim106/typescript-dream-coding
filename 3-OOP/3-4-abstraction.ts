@@ -75,7 +75,7 @@
     private internalAge = 4;
 
     get age(): number {
-      return this.internalAge; 
+      return this.internalAge;
     }
 
     set age(age: number) {
